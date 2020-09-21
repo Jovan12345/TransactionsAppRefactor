@@ -88,9 +88,18 @@
       "id": 1600672121588,
       "merchantLogo": "/static/media/new-logo.eafab8ff.png",
       "transactionType": "Online Transfer"
+    },
+    {
+      "merchant": "sdf",
+      "amount": "123",
+      "categoryCode": "#b918fc",
+      "transactionDate": 1600708391099,
+      "id": 1600708391099,
+      "merchantLogo": "/static/media/new-logo.eafab8ff.png",
+      "transactionType": "Online Transfer"
     }
   ],
   "balance": {
-    "totalAmount": 4896
+    "totalAmount": 4773
   }
 }

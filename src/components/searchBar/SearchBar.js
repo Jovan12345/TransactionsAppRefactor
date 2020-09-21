@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterSearchValue } from '../../actions';
+import {DelayInput} from 'react-delay-input';
 
 const SearchBar = () => {
-    const [searchValue, setsearchValue] = useState('')
     const filereducer = useSelector(state => state.filereducer);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const timeOutId = setTimeout(() => searchValueFucntion(searchValue, filereducer), 300);
-        return () => clearTimeout(timeOutId);
-    }, [searchValue]);
-
-    const searchValueFucntion = (event, transactions) => {
-        dispatch(filterSearchValue(event, transactions))
-    };
-
     return (
         <form className="searchbar" onSubmit={e => { e.preventDefault() }} autoComplete="off">
-            <input value={searchValue} type='search' placeholder="Search transactions" onChange={event => setsearchValue(event.target.value)} />
+            <DelayInput delayTimeout={300} onChange={event => dispatch(filterSearchValue(event.target.value, filereducer))} type="search" placeholder="Search transactions"/>
         </form>
     );
 };

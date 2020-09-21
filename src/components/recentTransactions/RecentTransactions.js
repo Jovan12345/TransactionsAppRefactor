@@ -13,28 +13,19 @@ const RecentTransactions = () => {
     const fileReducer = useSelector(state => state.filereducer);
 
     useEffect(() => {
-        getData()
-    }, [])
-
-    const getData = () => {
         dispatch(getTransactions())
         dispatch(getBalance())
-    }
+    }, [dispatch])
 
     function renderTransactions(sortReducer, searchReducer, fileReducer) {
-        console.log('sort', sortReducer.transactions)
-        console.log('search', searchReducer.transactions)
-        console.log('fileRed', fileReducer)
         
         const renderTransactionsData = searchReducer.transactions ? searchReducer.transactions : (sortReducer.transactions ? sortReducer.transactions : (fileReducer ? fileReducer : []));
-        console.log('all transactions', renderTransactionsData)
         if (renderTransactionsData.length !== 0) {
             return renderTransactionsData.map((tr, index) => {
-                const color = tr.categoryCode;
                 if (!tr.totalAmount) {
                     tr.transactionDate = new Date(tr.transactionDate).toDateString().slice(4, 10);
                     return (
-                        <div key={index} className="transctionItems" style={{ borderLeft: `8px solid ${color}` }}>
+                        <div key={index} className="transctionItems" style={{ borderLeft: `8px solid ${tr.categoryCode}` }}>
                             <p id="transactionDate">{tr.transactionDate}</p>
                             <img id="merchantLogo" src={tr.merchantLogo} alt="merchantLogo" />
                             <p id="merchant"><span id="merchantText">{tr.merchant}</span> <br /><span>{tr.transactionType}</span></p>
@@ -47,7 +38,7 @@ const RecentTransactions = () => {
         } else if (searchReducer.transactions) {
             return <div><p className="noMatch">No search results were found</p></div>
         } else {
-            return <div><p>Data is loading</p></div>
+            return <div><p className="loadingData">Data is loading...</p></div>
         }
     }
 
@@ -71,6 +62,5 @@ const RecentTransactions = () => {
         </>
     )
 }
-
 
 export default RecentTransactions;
