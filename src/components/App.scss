@@ -1,0 +1,18 @@
+@import '../components/recentTransactions/RecentTransactiions.scss';
+@import '../components/makeTransactions/MakeTransfer.scss';
+@import '../components/searchBar/SearchBar.scss';
+@import '../components/sortTransactions/SortTransactions.scss';
+@import '../components/Header.scss';
+@import '../components/transactionModal/transactionModal.scss';
+
+body{
+    background: url("../utilities/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.makeTransferComponent, .recentTransferComponent{
+    margin-bottom: 20px;
+}
