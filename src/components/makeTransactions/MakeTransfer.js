@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
-import { makeNewTransaction, updateBalance, showModal, stageFormValues } from '../../actions';
+import { showModal, stageFormValues } from '../../actions';
 
 import arrows from '../../utilities/arrows.png';
 import TransactionModal from '../transactionModal/transactionModal';
@@ -88,7 +88,7 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { makeNewTransaction, updateBalance, showModal, stageFormValues })(reduxForm({
+export default connect(mapStateToProps, { showModal, stageFormValues })(reduxForm({
     form: 'makeAmountTransfer',
     validate,
     onSubmitSuccess: afterSubmit

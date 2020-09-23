@@ -1,7 +1,7 @@
 import React from 'react';
-import peachTreeLogo from '../utilities/peachTreeLoog.png';
+import peachTreeLogo from '../../utilities/peachTreeLoog.png';
 
-const Header = () => {
+const Header: React.FC = () => {
     return (
         <div className='page-header'>
             <div className='container'>

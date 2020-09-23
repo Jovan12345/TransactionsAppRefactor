@@ -4,9 +4,13 @@ import { FILE_TRANSACTIONS, NEW_TRANSACTION, SEARCH_TRANSACTIONS, SORT_TRANSACTI
 
 
 export const getTransactions = () => async dispatch => {
-    const fileData = await transactionsAPI.get('/data');
-    fileData.data.sort((a, b) => b.transactionDate - a.transactionDate)
-
+    let fileData;
+    try {
+        fileData = await transactionsAPI.get('/data');
+        fileData.data.sort((a, b) => b.transactionDate - a.transactionDate)
+    } catch (error) {
+        fileData = {data:'error'}
+    }
     dispatch({ type: FILE_TRANSACTIONS, payload: fileData.data });
 }
 

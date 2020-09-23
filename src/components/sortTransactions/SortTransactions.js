@@ -1,16 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { sortTransactions, sortButtonClicked } from '../../actions/index';
 
-class SortTransactions extends Component {
+import SortButton from '../sortButton/SortButton';
 
-    buttonHandler(event) {
-        const renderTransactionsData = this.props.searchreducer.transactions !== undefined ? this.props.searchreducer.transactions : (this.props.filereducer ? this.props.filereducer : null);
+const SortTransactions = () => {
+    const dispatch = useDispatch();
+
+    const sortButtonReducer = useSelector(state => state.sortButtonReducer);
+    const searchReducer = useSelector(state => state.searchreducer);
+    const fileReducer = useSelector(state => state.filereducer);
+
+
+    const buttonHandler = (event, searchreducer, filereducer) => {
+        const renderTransactionsData = searchreducer.transactions !== undefined ? searchreducer.transactions : (filereducer ? filereducer : null);
+        const choosedBtn = event.target.name;
         let sortedTransactionsData;
 
-        if (event.target.name) {
-            this.props.sortButtonClicked(event.target.name);
-            switch (event.target.name) {
+        if (choosedBtn) {
+            dispatch(sortButtonClicked(choosedBtn));
+            switch (choosedBtn) {
                 case 'DescendingDate':
                     sortedTransactionsData = renderTransactionsData.sort((a, b) => b.transactionDate.localeCompare(a.transactionDate));
                     break;
@@ -32,52 +41,23 @@ class SortTransactions extends Component {
                 default:
                     return null;
             }
-            this.props.sortTransactions(sortedTransactionsData)
+            dispatch(sortTransactions(sortedTransactionsData))
         }
     }
 
-    buttonSelected(field){
-        const selectedButton = this.props.sortButtonReducer.indexOf(field) === -1 ? "" : "chooseSort";
-        return selectedButton; 
+    const buttonSelected = (field) => {
+        const selectedButton = sortButtonReducer.indexOf(field) === -1 ? "" : "chooseSort";
+        return selectedButton;
     }
 
-    render() {
-        return (
-            <div className="sortButtons" onClick={(e) => this.buttonHandler(e)}>
-                <p className="sortButton">Sort by: </p>
-                <div className="dropdown">
-                    <p className="dropbtn" selecedbtn={this.buttonSelected("Date")}>DATE</p>
-                    <div className="dropdown-content">
-                        <input type="button" name="AscendingDate" value="Ascending" selecedbtn={this.buttonSelected("AscendingDate")}/>
-                        <input type="button" name="DescendingDate" value="Descending" selecedbtn={this.buttonSelected("DescendingDate")}/>
-                    </div>
-                </div>
-                <div className="dropdown2">
-                    <p className="dropbtn" selecedbtn={this.buttonSelected("Beneficiary")}>BENEFICIARY</p>
-                    <div className="dropdown-content">
-                        <input type="button" name="AscendingBeneficiary" value="Ascending" selecedbtn={this.buttonSelected("AscendingBeneficiary")}/>
-                        <input type="button" name="DescendingBeneficiary" value="Descending" selecedbtn={this.buttonSelected("DescendingBeneficiary")}/>
-                    </div>
-                </div>
-                <div className="dropdown3">
-                    <p className="dropbtn" selecedbtn={this.buttonSelected("Amount")}>AMOUNT</p>
-                    <div className="dropdown-content">
-                        <input type="button" name="AscendingAmount" value="Ascending" selecedbtn={this.buttonSelected("AscendingAmount")}/>
-                        <input type="button" name="DescendingAmount" value="Descending" selecedbtn={this.buttonSelected("DescendingAmount")}/>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+    return (
+        <div className="sortButtons" onClick={e => buttonHandler(e, searchReducer, fileReducer)}>
+            <p className="sortButton">Sort by: </p>
+            <SortButton type='Date' id='1' buttonSelected={buttonSelected} />
+            <SortButton type='Beneficiary' id='2' buttonSelected={buttonSelected} />
+            <SortButton type='Amount' id='3' buttonSelected={buttonSelected} />
+        </div>
+    )
 }
 
-const mapStateToProps = (state) => {
-
-    return {
-        filereducer: state.filereducer,
-        searchreducer: state.searchreducer,
-        sortButtonReducer: state.sortButtonReducer
-    }
-}
-
-export default connect(mapStateToProps, { sortTransactions, sortButtonClicked })(SortTransactions)
+export default SortTransactions

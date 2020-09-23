@@ -1,55 +1,44 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { showModal, makeNewTransaction, updateBalance, sortTransactions, filterSearchValue } from '../../actions'
+import { useDispatch, useSelector } from 'react-redux';
+import { showModal, makeNewTransaction, updateBalance, sortTransactions, filterSearchValue } from '../../actions';
 
-class TransactionModal extends React.Component {
+const TransactionModal = () => {
+    const dispatch = useDispatch();
 
-    handleClose = () => {
-        this.props.showModal(false)
-    };
+    const modalreducer = useSelector(state => state.modalreducer);
+    const formvaluesreducer = useSelector(state => state.formvaluesreducer);
+    const balancereducer = useSelector(state => state.balancereducer);
 
-    
-
-    submitTransaction = () => {
-        this.props.sortTransactions("");
-        this.props.filterSearchValue("");
-        this.props.makeNewTransaction(this.props.formvaluesreducer);
-        this.props.showModal(false)
+    const submitTransaction = () => {
+        dispatch(sortTransactions(""));
+        dispatch(filterSearchValue(""));
+        dispatch(makeNewTransaction(formvaluesreducer));
+        dispatch(showModal(false))
 
         //update total Balance
-        const newBalance = this.props.balancereducer.totalAmount - this.props.formvaluesreducer.amount;
-        this.props.updateBalance(newBalance);
-        
+        const newBalance = balancereducer.totalAmount - formvaluesreducer.amount;
+        dispatch(updateBalance(newBalance));
+
     };
 
-    render() {
-        return (
-            <>
-                <Modal show={this.props.modalreducer} onHide={this.handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Transaction Details</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>To Account: <b>{this.props.formvaluesreducer.merchant}</b></p>
-                        <p>Amount: <b>{this.props.formvaluesreducer.amount}</b></p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <button className="closeBtn" onClick={this.handleClose}>Close</button>
-                        <button className="success" onClick={this.submitTransaction}>Transfer</button>
-                    </Modal.Footer>
-                </Modal>
-            </>
-        );
-    }
+    return (
+        <>
+            <Modal show={modalreducer} onHide={() => dispatch(showModal(false))}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Transaction Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>To Account: <b>{formvaluesreducer.merchant}</b></p>
+                    <p>Amount: <b>{formvaluesreducer.amount}</b></p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <button className="closeBtn" onClick={() => dispatch(showModal(false))}>Close</button>
+                    <button className="success" onClick={submitTransaction}>Transfer</button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
 }
 
-const mapStateToProps = state => {
-    return {
-        modalreducer: state.modalreducer,
-        formvaluesreducer: state.formvaluesreducer,
-        balancereducer: state.balancereducer
-    }
-}
-
-export default connect(mapStateToProps, { showModal, makeNewTransaction, updateBalance, sortTransactions, filterSearchValue })(TransactionModal);
+export default TransactionModal;

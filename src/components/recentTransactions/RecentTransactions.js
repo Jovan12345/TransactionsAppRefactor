@@ -20,7 +20,10 @@ const RecentTransactions = () => {
     function renderTransactions(sortReducer, searchReducer, fileReducer) {
         
         const renderTransactionsData = searchReducer.transactions ? searchReducer.transactions : (sortReducer.transactions ? sortReducer.transactions : (fileReducer ? fileReducer : []));
-        if (renderTransactionsData.length !== 0) {
+
+        if (renderTransactionsData.indexOf('error') !== -1){
+            return <div><p className="loadingData">Error occured while loading data. Contact support at support@gecko.mk</p></div>
+        } else if (renderTransactionsData.length !== 0) {
             return renderTransactionsData.map((tr, index) => {
                 if (!tr.totalAmount) {
                     tr.transactionDate = new Date(tr.transactionDate).toDateString().slice(4, 10);

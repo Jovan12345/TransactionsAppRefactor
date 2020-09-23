@@ -4,9 +4,9 @@ import './App.scss';
 
 import MakeTransfer from './makeTransactions/MakeTransfer';
 import RecentTransactions from './recentTransactions/RecentTransactions';
-import Header from './Header';
+import Header from '../components/header/Header';
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <>
             <Header />
