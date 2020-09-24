@@ -7,10 +7,8 @@ import SortButton from '../sortButton/SortButton';
 const SortTransactions = () => {
     const dispatch = useDispatch();
 
-    const sortButtonReducer = useSelector(state => state.sortButtonReducer);
     const searchReducer = useSelector(state => state.searchreducer);
     const fileReducer = useSelector(state => state.filereducer);
-
 
     const buttonHandler = (event, searchreducer, filereducer) => {
         const renderTransactionsData = searchreducer.transactions !== undefined ? searchreducer.transactions : (filereducer ? filereducer : null);
@@ -45,17 +43,12 @@ const SortTransactions = () => {
         }
     }
 
-    const buttonSelected = (field) => {
-        const selectedButton = sortButtonReducer.indexOf(field) === -1 ? "" : "chooseSort";
-        return selectedButton;
-    }
-
     return (
         <div className="sortButtons" onClick={e => buttonHandler(e, searchReducer, fileReducer)}>
             <p className="sortButton">Sort by: </p>
-            <SortButton type='Date' id='1' buttonSelected={buttonSelected} />
-            <SortButton type='Beneficiary' id='2' buttonSelected={buttonSelected} />
-            <SortButton type='Amount' id='3' buttonSelected={buttonSelected} />
+            <SortButton type='Date' id='1' />
+            <SortButton type='Beneficiary' id='2' />
+            <SortButton type='Amount' id='3' />
         </div>
     )
 }

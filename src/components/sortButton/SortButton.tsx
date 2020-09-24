@@ -1,14 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 
 import './SortButton.scss';
 
-interface Props{
+interface Props {
     type: string,
-    id: string,
-    buttonSelected(field:string): () => string;
+    id: string
 }
 
-const SortButton: React.FC<Props> = ({ type, id, buttonSelected }) => {
+interface RootState {
+    sortButtonReducer: string
+}
+
+const SortButton: React.FC<Props> = ({ type, id }) => {
+
+    const sortButtonSlected:string = useSelector<RootState, string>((state: RootState) => state.sortButtonReducer);
+
+    const buttonSelected = (field: string) => {
+        const selectedButton = sortButtonSlected.indexOf(field) === -1 ? "" : "chooseSort";
+        return selectedButton;
+    }
 
     return (
         <div className={`dropdown${id}`}>
