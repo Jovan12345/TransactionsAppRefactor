@@ -1,6 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from '../react-redux-hooks'
+import { useSelector, useDispatch } from 'react-redux';
 import { filterSearchValue } from '../../actions';
 
 //@ts-ignore

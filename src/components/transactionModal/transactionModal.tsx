@@ -3,12 +3,31 @@ import { Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, makeNewTransaction, updateBalance, sortTransactions, filterSearchValue } from '../../actions';
 
-const TransactionModal = () => {
+interface FormValuesReducer{
+    merchant: string,
+    amount: number,
+    categoryCode: string
+}
+
+interface BalanceReducer{
+    totalAmount: number
+}
+
+interface RootState{
+    modalreducer: boolean,
+    formvaluesreducer: FormValuesReducer,
+    balancereducer: BalanceReducer
+}
+
+const TransactionModal: React.FC = () => {
     const dispatch = useDispatch();
 
-    const modalreducer = useSelector(state => state.modalreducer);
-    const formvaluesreducer = useSelector(state => state.formvaluesreducer);
-    const balancereducer = useSelector(state => state.balancereducer);
+    const modal = (state: RootState) => state.modalreducer;
+    const modalreducer = useSelector(modal);
+    const formvalue = (state: RootState) => state.formvaluesreducer;
+    const formvaluesreducer = useSelector(formvalue);
+    const balance = (state:RootState) => state.balancereducer;
+    const balancereducer = useSelector(balance);
 
     const submitTransaction = () => {
         dispatch(sortTransactions(""));
@@ -17,7 +36,7 @@ const TransactionModal = () => {
         dispatch(showModal(false))
 
         //update total Balance
-        const newBalance = balancereducer.totalAmount - formvaluesreducer.amount;
+        const newBalance:number = balancereducer.totalAmount - formvaluesreducer.amount;
         dispatch(updateBalance(newBalance));
 
     };

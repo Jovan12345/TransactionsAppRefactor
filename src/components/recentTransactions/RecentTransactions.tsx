@@ -5,27 +5,66 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTransactions, getBalance } from '../../actions';
 import briefcase from '../../utilities/briefcase.png';
 
+interface FileReducer {
+    amount: number,
+    categoryCode: string,
+    merchant: string,
+    merchantLogo: string,
+    transactionDate: string,
+    transactionType: string
+};
+
+interface SearchReducer {
+    transactions: {
+        amount: number,
+        categoryCode: string,
+        merchant: string,
+        mechantLogo: string,
+        transactionDate: string,
+        transactionType: string
+    }
+};
+
+interface SortReducer {
+    transactions: {
+        amount: number,
+        categoryCode: string,
+        merchant: string,
+        mechantLogo: string,
+        transactionDate: string,
+        transactionType: string
+    }
+};
+
+interface RootState {
+    sortReducer: SortReducer,
+    searchreducer: SearchReducer,
+    filereducer: FileReducer
+};
+
 const RecentTransactions = () => {
     const dispatch = useDispatch();
 
-    const sortReducer = useSelector(state => state.sortReducer);
-    const searchReducer = useSelector(state => state.searchreducer);
-    const fileReducer = useSelector(state => state.filereducer);
+    const sort = (state: RootState) => state.sortReducer;
+    const sortReducer = useSelector(sort);
+    const search = (state: RootState) => state.searchreducer;
+    const searchReducer = useSelector(search);
+    const file = (state: RootState) => state.filereducer;
+    const fileReducer = useSelector(file);
 
     useEffect(() => {
         dispatch(getTransactions())
         dispatch(getBalance())
     }, [dispatch])
 
-    function renderTransactions(sortReducer, searchReducer, fileReducer) {
+    function renderTransactions(sortReducer: SortReducer, searchReducer: SearchReducer, fileReducer: FileReducer) {
         
-        const renderTransactionsData = searchReducer.transactions ? searchReducer.transactions : (sortReducer.transactions ? sortReducer.transactions : (fileReducer ? fileReducer : []));
-
+        const renderTransactionsData: any = searchReducer.transactions ? searchReducer.transactions : (sortReducer.transactions ? sortReducer.transactions : (fileReducer ? fileReducer : []));
         if (renderTransactionsData.indexOf('error') !== -1){
             return <div><p className="loadingData">Error occured while loading data. Contact support at support@gecko.mk</p></div>
         } else if (renderTransactionsData.length !== 0) {
-            return renderTransactionsData.map((tr, index) => {
-                if (!tr.totalAmount) {
+            return renderTransactionsData.map((tr: FileReducer, index: number) => {
+                if (tr.amount) {
                     tr.transactionDate = new Date(tr.transactionDate).toDateString().slice(4, 10);
                     return (
                         <div key={index} className="transctionItems" style={{ borderLeft: `8px solid ${tr.categoryCode}` }}>
@@ -36,7 +75,7 @@ const RecentTransactions = () => {
                         </div>
                     )
                 }
-                return <div>Error</div>;
+                return <div key={index}>Error while rendering data</div>;
             })
         } else if (searchReducer.transactions) {
             return <div><p className="noMatch">No search results were found</p></div>
