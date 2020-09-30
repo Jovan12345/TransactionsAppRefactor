@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { showModal, stageFormValues } from '../../actions';
 
 import arrows from '../../utilities/arrows.png';
-import TransactionModal from '../transactionModal/transactionModal';
+import TransactionModal from '../transactionModal/TransactionModal.tsx';
 
 class MakeTransfer extends React.Component {
     renderError({ error, submitFailed }) {
