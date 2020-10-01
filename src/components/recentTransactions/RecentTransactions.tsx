@@ -5,36 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTransactions, getBalance } from '../../actions';
 import briefcase from '../../utilities/briefcase.png';
 
-interface FileReducer {
-    amount: number,
-    categoryCode: string,
-    merchant: string,
-    merchantLogo: string,
-    transactionDate: string,
-    transactionType: string
-};
+import { FileReducer, SearchReducer, SortReducer } from '../typescriptInterfaces/TSInterfaces';
 
-interface SearchReducer {
-    transactions: {
-        amount: number,
-        categoryCode: string,
-        merchant: string,
-        mechantLogo: string,
-        transactionDate: string,
-        transactionType: string
-    }
-};
-
-interface SortReducer {
-    transactions: {
-        amount: number,
-        categoryCode: string,
-        merchant: string,
-        mechantLogo: string,
-        transactionDate: string,
-        transactionType: string
-    }
-};
+import { TransactionItems, IssueOccured, RecentTrnsactionsHeader, Briefcase, RecentTransactionsComponent, Header, AllTransactions } from './RecentTransactions.styles';
 
 interface RootState {
     sortReducer: SortReducer,
@@ -58,49 +31,49 @@ const RecentTransactions = () => {
     }, [dispatch])
 
     function renderTransactions(sortReducer: SortReducer, searchReducer: SearchReducer, fileReducer: FileReducer) {
-        
+
         const renderTransactionsData: any = searchReducer.transactions ? searchReducer.transactions : (sortReducer.transactions ? sortReducer.transactions : (fileReducer ? fileReducer : []));
-        if (renderTransactionsData.indexOf('error') !== -1){
-            return <div><p className="loadingData">Error occured while loading data. Contact support at support@gecko.mk</p></div>
+        if (renderTransactionsData.indexOf('error') !== -1) {
+            return <IssueOccured>Error occured while loading data. Contact support at support@gecko.mk</IssueOccured>
         } else if (renderTransactionsData.length !== 0) {
             return renderTransactionsData.map((tr: FileReducer, index: number) => {
                 if (tr.amount) {
                     tr.transactionDate = new Date(tr.transactionDate).toDateString().slice(4, 10);
                     return (
-                        <div key={index} className="transctionItems" style={{ borderLeft: `8px solid ${tr.categoryCode}` }}>
-                            <p id="transactionDate">{tr.transactionDate}</p>
+                        <TransactionItems key={index} inputColor={tr.categoryCode}>
+                            <p>{tr.transactionDate}</p>
                             <img id="merchantLogo" src={tr.merchantLogo} alt="merchantLogo" />
                             <p id="merchant"><span id="merchantText">{tr.merchant}</span> <br /><span>{tr.transactionType}</span></p>
                             <p id="amount">-${tr.amount}</p>
-                        </div>
+                        </TransactionItems>
                     )
                 }
-                return <div key={index}>Error while rendering data</div>;
+                return <IssueOccured key={index}>Error while rendering data</IssueOccured>;
             })
         } else if (searchReducer.transactions) {
-            return <div><p className="noMatch">No search results were found</p></div>
+            return <IssueOccured>No search results were found</IssueOccured>
         } else {
-            return <div><p className="loadingData">Data is loading...</p></div>
+            return <IssueOccured>Data is loading...</IssueOccured>
         }
     }
 
     return (
         <>
-            <img src={briefcase} alt="briefcase" className="briefcase"></img>
-            <h5 className="componentTransactionsHeader">Recent Transactions</h5>
-            <div className="recentTransactions">
-                <header className="row">
+            <Briefcase src={briefcase} alt="briefcase"></Briefcase>
+            <RecentTrnsactionsHeader>Recent Transactions</RecentTrnsactionsHeader>
+            <RecentTransactionsComponent>
+                <Header className="row">
                     <div className="col-lg-6">
                         <SearchBar />
                     </div>
                     <div className="col-lg-6">
                         <SortTransactions />
                     </div>
-                </header>
-                <div className="allTransactions">
+                </Header>
+                <AllTransactions>
                     {renderTransactions(sortReducer, searchReducer, fileReducer)}
-                </div>
-            </div>
+                </AllTransactions>
+            </RecentTransactionsComponent>
         </>
     )
 }

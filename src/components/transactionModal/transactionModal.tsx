@@ -3,15 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, makeNewTransaction, updateBalance, sortTransactions, filterSearchValue } from '../../actions';
 
-interface FormValuesReducer{
-    merchant: string,
-    amount: number,
-    categoryCode: string
-}
-
-interface BalanceReducer{
-    totalAmount: number
-}
+import { FormValuesReducer, BalanceReducer } from '../typescriptInterfaces/TSInterfaces';
 
 interface RootState{
     modalreducer: boolean,

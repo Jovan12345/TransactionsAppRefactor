@@ -4,25 +4,7 @@ import { sortTransactions, sortButtonClicked } from '../../actions/index';
 
 import SortButton from '../sortButton/SortButton';
 
-interface FileReducer {
-    amount: number,
-    categoryCode: string,
-    merchant: string,
-    merchantLogo: string,
-    transactionDate: string,
-    transactionType: string
-};
-
-interface SearchReducer {
-    transactions: {
-        amount: number,
-        categoryCode: string,
-        merchant: string,
-        mechantLogo: string,
-        transactionDate: string,
-        transactionType: string
-    }
-};
+import { FileReducer, SearchReducer } from '../typescriptInterfaces/TSInterfaces';
 
 interface RootState {
     searchreducer: SearchReducer,
