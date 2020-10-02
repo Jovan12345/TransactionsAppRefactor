@@ -4,6 +4,7 @@ import SortTransactions from '../sortTransactions/SortTransactions';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTransactions, getBalance } from '../../actions';
 import briefcase from '../../utilities/briefcase.png';
+import { Spinner } from 'react-bootstrap';
 
 import { FileReducer, SearchReducer, SortReducer } from '../typescriptInterfaces/TSInterfaces';
 
@@ -53,7 +54,7 @@ const RecentTransactions = () => {
         } else if (searchReducer.transactions) {
             return <IssueOccured>No search results were found</IssueOccured>
         } else {
-            return <IssueOccured>Data is loading...</IssueOccured>
+            return <><Spinner animation="border" size="sm"/> <span>Data is loading...</span></>
         }
     }
 
@@ -63,10 +64,10 @@ const RecentTransactions = () => {
             <RecentTrnsactionsHeader>Recent Transactions</RecentTrnsactionsHeader>
             <RecentTransactionsComponent>
                 <Header className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-5">
                         <SearchBar />
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-7">
                         <SortTransactions />
                     </div>
                 </Header>

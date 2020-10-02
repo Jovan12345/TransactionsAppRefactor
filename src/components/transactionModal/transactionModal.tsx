@@ -1,11 +1,12 @@
 import React from 'react';
+import { reset } from 'redux-form';
 import { Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, makeNewTransaction, updateBalance, sortTransactions, filterSearchValue } from '../../actions';
 
 import { FormValuesReducer, BalanceReducer } from '../typescriptInterfaces/TSInterfaces';
 
-interface RootState{
+interface RootState {
     modalreducer: boolean,
     formvaluesreducer: FormValuesReducer,
     balancereducer: BalanceReducer
@@ -18,19 +19,28 @@ const TransactionModal: React.FC = () => {
     const modalreducer = useSelector(modal);
     const formvalue = (state: RootState) => state.formvaluesreducer;
     const formvaluesreducer = useSelector(formvalue);
-    const balance = (state:RootState) => state.balancereducer;
+    const balance = (state: RootState) => state.balancereducer;
     const balancereducer = useSelector(balance);
 
     const submitTransaction = () => {
+        // Clear sort reducer
         dispatch(sortTransactions(""));
+        
+        // Clear search reducer by dispatching empty string for search value
         dispatch(filterSearchValue(""));
+        
+        // Make new transaction -- Insert value into transaction.json
         dispatch(makeNewTransaction(formvaluesreducer));
+        
+        // Hide modal
         dispatch(showModal(false))
-
+        
         //update total Balance
-        const newBalance:number = balancereducer.totalAmount - formvaluesreducer.amount;
+        const newBalance: number = balancereducer.totalAmount - formvaluesreducer.amount;
         dispatch(updateBalance(newBalance));
-
+        
+        // Resest form values after success button is pressed 
+        dispatch(reset('makeAmountTransfer'));
     };
 
     return (

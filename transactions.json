@@ -88,9 +88,27 @@
       "id": 1601561379911,
       "merchantLogo": "/static/media/new-logo.eafab8ff.png",
       "transactionType": "Online Transfer"
+    },
+    {
+      "merchant": "12344",
+      "amount": "123",
+      "categoryCode": "#68c324",
+      "transactionDate": 1601637186095,
+      "id": 1601637186095,
+      "merchantLogo": "/static/media/new-logo.eafab8ff.png",
+      "transactionType": "Online Transfer"
+    },
+    {
+      "merchant": "Jovan",
+      "amount": "123",
+      "categoryCode": "#a86975",
+      "transactionDate": 1601638115985,
+      "id": 1601638115985,
+      "merchantLogo": "/static/media/new-logo.eafab8ff.png",
+      "transactionType": "Online Transfer"
     }
   ],
   "balance": {
-    "totalAmount": 4877
+    "totalAmount": 4631
   }
 }

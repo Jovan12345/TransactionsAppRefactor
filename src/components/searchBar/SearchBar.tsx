@@ -21,6 +21,7 @@ const SearchBar: React.FC = () => {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => dispatch(filterSearchValue(event.target.value, filereducer))}
                 type="search"
                 placeholder="Search transactions"
+                className="w-100"
             />
         </form>
     );

@@ -62,7 +62,7 @@ const SortTransactions: React.FC = () => {
 
     return (
         <div className="sortButtons" onClick={(e: EventObject) => buttonHandler(e, searchReducer, fileReducer)}>
-            <p className="sortButton">Sort by: </p>
+            <p className="sortButton"><strong>Sort by: </strong></p>
             <SortButton type='Date' id='1' />
             <SortButton type='Beneficiary' id='2' />
             <SortButton type='Amount' id='3' />

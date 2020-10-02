@@ -2,15 +2,16 @@ import styled from 'styled-components';
 
 export const TransactionItems = styled.div`
     display: grid;
-    grid-template-columns: 67px 65px 1fr 95px;
+    grid-template-columns: 67px 67px 1fr 95px;
     margin: 0 10px;
     border: 1px solid grey;
     border-left: 8px solid ${props => props.inputColor} ;
     margin-bottom: -1px;
-    & > * {
-        display: inline-block;
-        margin: 5px 10px;
-        vertical-align: middle;
+    align-items: center;
+    padding: 5px 0 5px 10px;
+
+    & > p{
+        margin: 0;
     }
 
     #merchantLogo {
@@ -25,17 +26,6 @@ export const TransactionItems = styled.div`
         font-size: larger;
         font-weight: bolder;
         float: right;
-    }
-
-    @media (max-width: 991px) {
-        #merchant {
-            margin-right: 0;
-            width: fit-content;
-        }
-    
-        #amount {
-            margin-left: 0;
-        }
     }
 `;
 
@@ -64,6 +54,9 @@ export const RecentTransactionsComponent = styled.div`
 
 export const Header = styled.header`
     padding: 20px 15px;
+    @media (max-width: 991px) {
+        padding-bottom: 0;
+    }
 `;
 
 export const AllTransactions = styled.div`

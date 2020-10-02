@@ -1,15 +1,21 @@
 .makeTransferForm {
     background-color: white;
-    padding: 15px 10px;
     input {
         width: 100%;
         font-size: 1rem;
-        border-top: none;
-        border-left: none;
-        border-right: none;
+        border: none;
         background-color: white;
         border-bottom: 1px solid grey;
         margin: 10px 0;
+        outline: none;
+        &:focus{
+            background-color: rgb(224, 224, 224);
+            border-radius: 3px;
+        }
+        &:hover{
+            border-bottom: 1px solid black;
+        }
+        
     }
     label{
         font-weight: bold;
@@ -23,6 +29,10 @@
         border-radius: 5px;
         display: block;
         margin: 35px 10px 15px auto;
+        outline: none;
+        &:hover{
+            box-shadow: 0 0 4px  #ee7033;
+        }
     }
     .transactionFields{
         margin: 10px 0;
@@ -43,5 +53,5 @@
 
 .arrowsIcon{
     float: left;
-    padding: 6px 0 0 6px;
+    padding: 6px;
 }

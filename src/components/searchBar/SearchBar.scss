@@ -1,34 +1,12 @@
-form.searchbar button {
-    float: left;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 1px solid grey;
-    border-radius: 15px;
-    cursor: pointer;
-    outline: none;
-}
-
 form.searchbar input {
-    border-top: none;
-    border-right: none;
-    border-left: none;
+    border: none;
     border-bottom: 1px solid grey;
-    float: left;
     outline: none;
-    width: 87%;
-}
-
-@media (max-width: 1199px) {
-    form.searchbar input {
-        width: 75%;
+    &:focus{
+        background-color: rgb(224, 224, 224);
+        border-radius: 3px;
     }
-    
-}
-
-@media (max-width: 767px) {
-    form.searchbar input {
-        width: 80%;
+    &:hover{
+        border-bottom: 1px solid black;
     }
-    
 }

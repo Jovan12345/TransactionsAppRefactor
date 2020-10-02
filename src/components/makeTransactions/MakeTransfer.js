@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { showModal, stageFormValues } from '../../actions';
 
@@ -44,7 +44,7 @@ class MakeTransfer extends React.Component {
             <>
                 <img src={arrows} alt="arrowsIcon" className="arrowsIcon"></img>
                 <h5 className="componentTransferHeader">Make a transfer</h5>
-                <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="makeTransferForm">
+                <form className="makeTransferForm px-2 py-3" onSubmit={this.props.handleSubmit(this.onSubmit)}>
                     <Field name="fromAmount" component={this.renderInput} label="FROM ACCOUNT" placeholder={`Free Checking $${balance}`} disabled="disabled" />
                     <Field name="merchant" component={this.renderInput} required label="TO ACCOUNT" placeholder='Georgia Power Electric Company' />
                     <Field name="amount" type="number" component={this.renderInput} label="AMOUNT" placeholder='$ 0.00' />
@@ -72,13 +72,7 @@ const validate = formValues => {
     } else if (formValues.amount < 0 || formValues.amount > 500) {
         errors.amount = "Amount per transaction must be between $0 and $500";
     }
-
     return errors;
-}
-
-// Resest form values after submit button is pressed 
-const afterSubmit = (result, dispatch) => {
-    dispatch(reset('makeAmountTransfer'));
 }
 
 const mapStateToProps = state => {
@@ -90,6 +84,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { showModal, stageFormValues })(reduxForm({
     form: 'makeAmountTransfer',
-    validate,
-    onSubmitSuccess: afterSubmit
+    validate
 })(MakeTransfer));

@@ -23,10 +23,10 @@ const SortButton: React.FC<Props> = ({ type, id }) => {
 
     return (
         <div className={`dropdown${id}`}>
-            <p className="dropbtn" data-selecedbtn={buttonSelected(`${type}`)}>{type.toUpperCase()}</p>
+            <p className="dropbtn m-0 px-2 py-1" data-selecedbtn={buttonSelected(`${type}`)}>{type.toUpperCase()}</p>
             <div className="dropdown-content">
-                <input type="button" name={`Ascending${type}`} value="Ascending" data-selecedbtn={buttonSelected(`Ascending${type}`)} />
-                <input type="button" name={`Descending${type}`} value="Descending" data-selecedbtn={buttonSelected(`Descending${type}`)} />
+                <input className="px-2 py-1" type="button" name={`Ascending${type}`} value="Ascending" data-selecedbtn={buttonSelected(`Ascending${type}`)} />
+                <input className="px-2 py-1" type="button" name={`Descending${type}`} value="Descending" data-selecedbtn={buttonSelected(`Descending${type}`)} />
             </div>
         </div>
     );

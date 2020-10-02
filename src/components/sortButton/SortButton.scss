@@ -1,19 +1,7 @@
 .sortButtons {
-    input:hover,
-    input:focus {
-        background-color: rgb(184, 184, 184);
-    }
-
-    .dropdown1,
-    .dropdown2,
-    .dropdown3 {
-        display: inline-block;
-        .dropbtn {
-            font-weight: 400;
-            margin: 0;
-            border: 1px solid grey;
-            display: inline-block;
-        }
+    .dropbtn {
+        font-weight: 400;
+        border: 1px solid grey;
     }
 
     .dropdown-content {
@@ -21,11 +9,11 @@
         position: absolute;
         z-index: 1;
         input {
+            margin-top: -1px;
             background-color: white;
             display: block;
             text-align: left;
             font-weight: 400;
-            padding: 3px 12px;
             width: 110px;
             border: 1px solid grey;
         }
