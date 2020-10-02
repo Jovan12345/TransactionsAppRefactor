@@ -25,7 +25,23 @@ export const TransactionItems = styled.div`
     #amount {
         font-size: larger;
         font-weight: bolder;
-        float: right;
+    }
+
+    @media (max-width: 440px) {
+        grid-template-columns: 50px 50px 1fr 70px;
+        padding-left: 3px;
+        #transactionDate, #merchantText, #transactionType{
+            font-size: 14px;
+        }
+
+        #amount {
+            font-size: 16px;
+        }
+
+        #merchantLogo {
+            width: 40px;
+        }
+
     }
 `;
 

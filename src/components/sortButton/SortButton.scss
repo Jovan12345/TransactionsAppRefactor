@@ -47,3 +47,13 @@
         }
     }
 }
+
+@media (max-width: 440px) {
+    .sortButtons{
+        font-size: 14px;
+        margin-right: 0;
+        .sortButton{
+            padding: 0;
+        }
+    }
+}

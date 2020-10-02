@@ -42,9 +42,9 @@ const RecentTransactions = () => {
                     tr.transactionDate = new Date(tr.transactionDate).toDateString().slice(4, 10);
                     return (
                         <TransactionItems key={index} inputColor={tr.categoryCode}>
-                            <p>{tr.transactionDate}</p>
+                            <p id="transactionDate">{tr.transactionDate}</p>
                             <img id="merchantLogo" src={tr.merchantLogo} alt="merchantLogo" />
-                            <p id="merchant"><span id="merchantText">{tr.merchant}</span> <br /><span>{tr.transactionType}</span></p>
+                            <p id="merchant"><span id="merchantText">{tr.merchant}</span> <br /><span id="transactionType">{tr.transactionType}</span></p>
                             <p id="amount">-${tr.amount}</p>
                         </TransactionItems>
                     )
