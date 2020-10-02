@@ -8,7 +8,7 @@ import { Spinner } from 'react-bootstrap';
 
 import { FileReducer, SearchReducer, SortReducer } from '../typescriptInterfaces/TSInterfaces';
 
-import { TransactionItems, IssueOccured, RecentTrnsactionsHeader, Briefcase, RecentTransactionsComponent, Header, AllTransactions } from './RecentTransactions.styles';
+import { TransactionItems, IssueOccured, RecentTrnsactionsHeader, Briefcase, RecentTransactionsComponent, Header, AllTransactions, DataLoading } from './RecentTransactions.styles';
 
 interface RootState {
     sortReducer: SortReducer,
@@ -54,7 +54,7 @@ const RecentTransactions = () => {
         } else if (searchReducer.transactions) {
             return <IssueOccured>No search results were found</IssueOccured>
         } else {
-            return <><Spinner animation="border" size="sm"/> <span>Data is loading...</span></>
+            return <DataLoading><Spinner animation="border" size="sm"/> <span>Data is loading...</span></DataLoading>
         }
     }
 

@@ -34,6 +34,10 @@ export const IssueOccured = styled.div`
     color: red;
 `;
 
+export const DataLoading = styled.div`
+    padding: 10px 15px;
+`;
+
 export const RecentTrnsactionsHeader = styled.h5`
     background-color: #0c8397;
     color: white;
