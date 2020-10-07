@@ -106,9 +106,18 @@
       "id": 1601638115985,
       "merchantLogo": "/static/media/new-logo.eafab8ff.png",
       "transactionType": "Online Transfer"
+    },
+    {
+      "merchant": "fff",
+      "amount": "112",
+      "categoryCode": "#7af60e",
+      "transactionDate": 1602070687567,
+      "id": 1602070687567,
+      "merchantLogo": "/static/media/new-logo.eafab8ff.png",
+      "transactionType": "Online Transfer"
     }
   ],
   "balance": {
-    "totalAmount": 4631
+    "totalAmount": 4519
   }
 }

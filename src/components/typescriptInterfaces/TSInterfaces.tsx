@@ -15,7 +15,8 @@ export interface SearchReducer {
         mechantLogo: string,
         transactionDate: string,
         transactionType: string
-    }
+    },
+    value: string
 };
 
 export interface SortReducer {

@@ -33,7 +33,8 @@ const RecentTransactions = () => {
 
     function renderTransactions(sortReducer: SortReducer, searchReducer: SearchReducer, fileReducer: FileReducer) {
 
-        const renderTransactionsData: any = searchReducer.transactions ? searchReducer.transactions : (sortReducer.transactions ? sortReducer.transactions : (fileReducer ? fileReducer : []));
+        const renderTransactionsData: any = searchReducer.transactions && searchReducer.value !== "" ? searchReducer.transactions : (sortReducer.transactions ? sortReducer.transactions : (fileReducer ? fileReducer : [])) ;
+        
         if (renderTransactionsData.indexOf('error') !== -1) {
             return <IssueOccured>Error occured while loading data. Contact support at support@gecko.mk</IssueOccured>
         } else if (renderTransactionsData.length !== 0) {
