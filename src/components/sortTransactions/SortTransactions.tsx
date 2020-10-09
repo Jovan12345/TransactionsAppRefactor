@@ -62,12 +62,12 @@ const SortTransactions: React.FC = () => {
 
     return (
         <div className="sortButtons" onClick={(e: EventObject) => buttonHandler(e, searchReducer, fileReducer)}>
-            <p className="sortButton"><strong>Sort by: </strong></p>
+            <p className="sortButton m-0 pr-2 py-1">Sort by: </p>
             <SortButton type='Date' id='1' />
             <SortButton type='Beneficiary' id='2' />
             <SortButton type='Amount' id='3' />
         </div>
-    )
+    );
 }
 
 export default SortTransactions;

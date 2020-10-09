@@ -81,43 +81,16 @@
       "transactionType": "Online Transfer"
     },
     {
-      "merchant": "rts",
+      "merchant": "123sdf",
       "amount": "123",
-      "categoryCode": "#baaf58",
-      "transactionDate": 1601561379911,
-      "id": 1601561379911,
-      "merchantLogo": "/static/media/new-logo.eafab8ff.png",
-      "transactionType": "Online Transfer"
-    },
-    {
-      "merchant": "12344",
-      "amount": "123",
-      "categoryCode": "#68c324",
-      "transactionDate": 1601637186095,
-      "id": 1601637186095,
-      "merchantLogo": "/static/media/new-logo.eafab8ff.png",
-      "transactionType": "Online Transfer"
-    },
-    {
-      "merchant": "Jovan",
-      "amount": "123",
-      "categoryCode": "#a86975",
-      "transactionDate": 1601638115985,
-      "id": 1601638115985,
-      "merchantLogo": "/static/media/new-logo.eafab8ff.png",
-      "transactionType": "Online Transfer"
-    },
-    {
-      "merchant": "fff",
-      "amount": "112",
-      "categoryCode": "#7af60e",
-      "transactionDate": 1602070687567,
-      "id": 1602070687567,
+      "categoryCode": "#84354f",
+      "transactionDate": 1602077494244,
+      "id": 1602077494244,
       "merchantLogo": "/static/media/new-logo.eafab8ff.png",
       "transactionType": "Online Transfer"
     }
   ],
   "balance": {
-    "totalAmount": 4519
+    "totalAmount": 4876
   }
 }

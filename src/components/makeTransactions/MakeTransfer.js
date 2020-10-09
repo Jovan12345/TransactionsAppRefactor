@@ -7,30 +7,32 @@ import arrows from '../../utilities/arrows.png';
 import TransactionModal from '../transactionModal/TransactionModal.tsx';
 
 class MakeTransfer extends React.Component {
-    renderError({ error, submitFailed }) {
-        if (submitFailed) {
+    renderError({ error, submitFailed }, disabled) {
+
+        if (submitFailed && !disabled) {
             return (
-                <>
+                <p className="errorMessage">
                     {error}
-                </>
+                </p>
             );
         }
     }
 
     renderInput = ({ input, label, meta, placeholder, disabled }) => {
+
         return (
             <div className="transactionFields">
                 <label> {label}</label>
                 <>
                     <input {...input} autoComplete="off" placeholder={placeholder} disabled={disabled} />
-                    <p className="errorMessage">{this.renderError(meta)}</p>
+                    {this.renderError(meta, disabled)}
                 </>
             </div>
         );
     }
 
     onSubmit = (formValues) => {
-        const recordExists = this.props.filereducer.map(x => x.merchant.indexOf(formValues.merchant)).filter(x => x!== -1);
+        const recordExists = this.props.filereducer.map(x => x.merchant.indexOf(formValues.merchant)).filter(x => x !== -1);
         const categoryCode = recordExists.length !== 0 ? this.props.filereducer[recordExists[0]].categoryCode : "#" + Math.floor(Math.random() * 0xFFFFFF).toString(16);
         formValues.categoryCode = categoryCode;
 

@@ -3,7 +3,6 @@
         font-weight: 400;
         border: 1px solid grey;
     }
-
     .dropdown-content {
         display: none;
         position: absolute;
@@ -48,12 +47,3 @@
     }
 }
 
-@media (max-width: 440px) {
-    .sortButtons{
-        font-size: 14px;
-        margin-right: 0;
-        .sortButton{
-            padding: 0;
-        }
-    }
-}

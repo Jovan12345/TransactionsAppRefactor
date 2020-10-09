@@ -1,30 +1,18 @@
-// .sortButtons {
-//     width: 360px;
-//     float: right;
-//     p {
-//         display: inline-block;
-//         padding: 3px 12px;
-//         font-weight: bold;
-//     }
-// }
-
-@media (max-width: 991px) {
-    .sortButtons {
-        margin: 20px 0 10px 0;
-        width: fit-content;
-        .sortButton {
-            padding-left: 0;
-        }
-        p {
-            display: inline;
-        }
-    }
-}
-
 .sortButtons{
     display: flex;
     justify-content: flex-end;
-    p{
-        padding: 3px 12px 3px 0;
+}
+
+@media (max-width: 991px) {
+    .sortButtons {
+        margin: 20px 0;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 440px) {
+    .sortButtons{
+        font-size: 14px;
+        margin-right: 0;
     }
 }

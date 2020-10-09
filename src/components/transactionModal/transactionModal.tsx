@@ -45,7 +45,7 @@ const TransactionModal: React.FC = () => {
 
     return (
         <>
-            <Modal show={modalreducer} onHide={() => dispatch(showModal(false))}>
+            <Modal show={modalreducer} onHide={() => dispatch(showModal(false))} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Transaction Details</Modal.Title>
                 </Modal.Header>
